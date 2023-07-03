@@ -1,0 +1,16 @@
+<h1><%= @movie.name %></h1>
+
+<p><%= @movie.detail %></p>
+
+<p>
+  <strong>Favourite:</strong>
+  <%= @movie.favourite? ? 'Yes' : 'No' %>
+</p>
+
+<%= link_to "Destroy", movie_path(@movie), data: {
+                  turbo_method: :delete,
+                  turbo_confirm: "Are you sure?"
+                } %>
+
+<br /><br />
+<%= link_to "Return to main page", root_path %>

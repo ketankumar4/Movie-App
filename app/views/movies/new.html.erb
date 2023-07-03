@@ -1,0 +1,35 @@
+<h1>New Movie</h1>
+
+<%= form_with model: @movie do |form| %>
+  <div>
+    <%= form.label :name %><br>
+    <%= form.text_field :name %>
+    <% @movie.errors.full_messages_for(:name).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+
+  <div>
+    <%= form.label :detail %><br>
+    <%= form.text_area :detail %><br>
+    <% @movie.errors.full_messages_for(:detail).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+
+  <div>
+    <%= form.check_box :fav %><br>
+    <%= form.label :fav %><br>
+    <% @movie.errors.full_messages_for(:fav).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
+
+<br /><br />
+
+<%= link_to "Return to main page", root_path %>

@@ -1,0 +1,45 @@
+<div class="flex-container">
+  <div class="flex-child">
+    <h1>Movies</h1>
+
+    <%= link_to "Add New Movie", new_movie_path %>
+
+    <br />
+    <br />
+
+    <%= form_tag movies_path, method: :get do %>
+        <%= label_tag "Search for movie name: " %>
+        <%= text_field_tag :search, params[:search] %>
+        <%= submit_tag "Search" %>
+    <% end %>
+    <br />
+    <table style="width:70%">
+        <% @movies.each do |movie| %>
+          <tr>
+            <td>
+              <a href="<%= movie_path(movie) %>">
+                <%= movie.name %>
+              </a>
+            </td>
+            <td>
+              <%= form_with(model: movie, local: true) do |form| %>
+                <%= form.check_box :fav %>
+                <%= form.label :fav %>
+                <%= form.submit movie.button_text %>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+    </table>
+  </div>
+
+  <div class="flex-child">
+    <h1> Favourite Movies </h1>
+    <ul>
+      <% @fav_movies.each do |movie| %>
+        <li><h3> <%= movie.name %></h3></li>
+      <% end %>
+    </ul>
+  </div>
+
+</div>
